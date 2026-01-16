@@ -1,5 +1,7 @@
 import json
 import os
+from datetime import datetime
+
 ARQUIVO_TAREFAS = "tasks.json"
 
 def carregar_tarefas():
@@ -21,9 +23,15 @@ def adicionar_tarefa(tarefas):
         print("!!! A tarefa não pode estar vazia !!!")
         return
     
+    prioridade = input("Prioridade (baixa/media/alta): ").lower().strip()
+    if prioridade not in ["baixa","media", "alta"]:
+        prioridade = "media"
+
     tarefa = {
         "titulo": titulo,
-        "concluida": False
+        "concluida": False,
+        "prioridade": prioridade,
+        "criada_em": datetime.now().strftime("%Y-%m-%d %H:%M")
     }
 
     tarefas.append(tarefa)
@@ -38,8 +46,15 @@ def listar_tarefas(tarefas):
     
     print("\n--- SUAS TAREFAS ---")
     for i, tarefa in enumerate(tarefas):
-        status = "OK" if tarefa["concluida"] else "Não Realizada"
-        print(f"{i + 1}.{tarefa['titulo']} [{status}]")
+        status = "Concluída" if tarefa.get("concluida") else "Pendente"
+        prioridade = tarefa.get("prioridae" , "media")
+        criada_em = tarefa.get("criada_em", "não registrada")
+
+        print(f"{i + 1}.{tarefa['titulo']} "
+              f"[{status}] | "
+              f"Prioridade: {prioridade} | "
+              f"Criada em: {criada_em}")
+        
 
 
 def concluir_tarefa(tarefas):

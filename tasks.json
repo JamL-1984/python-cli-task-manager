@@ -2,5 +2,17 @@
     {
         "titulo": "tomar banho",
         "concluida": false
+    },
+    {
+        "titulo": "Estudar Python",
+        "concluida": true,
+        "prioridade": "alta",
+        "criada_em": "2026-01-15 22:56"
+    },
+    {
+        "titulo": "Jantar",
+        "concluida": true,
+        "prioridade": "media",
+        "criada_em": "2026-01-15 22:57"
     }
 ]
