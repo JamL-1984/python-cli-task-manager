@@ -3,6 +3,11 @@
 Gerenciador de tarefas simples executado via terminal (CLI), desenvolvido em Python.  
 Permite criar, listar, concluir e remover tarefas com persistência em arquivo JSON.
 ---
+## Versões
+- V1.0 - funcionalidades basicas
+- V1.1 - prioridade e data de criação
+- V1.2 - filtros pro status e prioridades
+
 ## 🚀 Funcionalidades
 - Adicionar tarefas
 - Listar tarefas
