@@ -24,7 +24,8 @@ def adicionar_tarefa(tarefas):
         return
     
     prioridade = input("Prioridade (baixa/media/alta): ").lower().strip()
-    if prioridade not in ["baixa","media", "alta"]:
+    print("DEBUG prioridade digitadade:",prioridade)
+    if prioridade not in ("baixa","media", "alta"):
         prioridade = "media"
 
     tarefa = {
@@ -47,7 +48,7 @@ def listar_tarefas(tarefas):
     print("\n--- SUAS TAREFAS ---")
     for i, tarefa in enumerate(tarefas):
         status = "Concluída" if tarefa.get("concluida") else "Pendente"
-        prioridade = tarefa.get("prioridae" , "media")
+        prioridade = tarefa.get("prioridade" , "media")
         criada_em = tarefa.get("criada_em", "não registrada")
 
         print(f"{i + 1}.{tarefa['titulo']} "
@@ -90,6 +91,21 @@ def remover_tarefa(tarefas):
     else:
         print("⚠️ Número inválido.")
 
+def listar_pendentes(tarefas):
+    pendentes = [t for t in tarefas if not t.get("concluida")]
+    listar_tarefas(pendentes)
+    
+    
+def listar_concluidas(tarefas):
+    concluidas = [t for t in tarefas if t.get("concluida")]
+    listar_tarefas(concluidas)
+
+def filtrar_prioridade(tarefas):
+    prioridade = input("Digite a prioridade (baixa/media/alta): ").lower().strip()
+    filtradas = [t for t in tarefas if t.get("prioridade" , "media") ==  prioridade]
+    listar_tarefas(filtradas)
+
+
 
 def menu():
     tarefas = carregar_tarefas()
@@ -98,8 +114,11 @@ def menu():
         print("\n--- GERENCIADOR DE TAREFAS ---")
         print("1 - Adicionar tarefa")
         print("2 - Listar tarefas")
-        print("3 - Concluir tarefa")
-        print("4 - Remover tarefa")
+        print("3 - Listar tarefas pendentes")
+        print("4 - Listar tarefas concluidas")
+        print("5 - Filtrar tarefas por prioridade")
+        print("6 - Concluir tarefa")
+        print("7 - Remover tarefa")
         print("0 - Sair")
 
         opcao = input("Escolha uma opção: ").strip()
@@ -109,8 +128,14 @@ def menu():
         elif opcao == "2":
             listar_tarefas(tarefas)
         elif opcao == "3":
-            concluir_tarefa(tarefas)
+            listar_pendentes(tarefas)
         elif opcao == "4":
+            listar_concluidas(tarefas)
+        elif opcao == "5":
+            filtrar_prioridade(tarefas)
+        elif opcao == "6":
+            concluir_tarefa(tarefas)
+        elif opcao == "7":
             remover_tarefa(tarefas)
         elif opcao == "0":
             print("👋 Saindo...")
