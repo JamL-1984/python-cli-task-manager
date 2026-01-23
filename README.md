@@ -15,4 +15,19 @@ Permite criar, listar, concluir e remover tarefas com persistência em arquivo J
 - JSON
 - Programação Estruturada
 ---
-## 📂 Estrutura do Projeto
+## Como executar o projeto
+
+### Pré-requisitos
+- Python 3.10 ou superior
+- Git(opcional, se clonar o repositório)
+
+### Passo a Passo
+- 1. clone o repositório:
+'''bash
+1° git clone http://github.com/JamL-1984/python-cli-task-manager.git
+2° cd python-cli-task-manager (entrar na pasta)
+3° python =m venv venv (cria um encapsulamento para o projeto)
+4° (win) venv\Scripts\activate (ativa o encapsulamento)
+4° (Linux/Mac) source venv/bin/activate
+5° pip install -r requirements.txt (instala dependencias)
+6° python main.py (executa o projeto)
